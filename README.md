@@ -107,6 +107,10 @@ Tailscale, with WireGuard-encrypted pod networking and Ansible for provisioning.
   <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Sassech&theme=tokyonight" alt="Contribution graph" />
   <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Sassech&theme=tokyonight&utcOffset=-3" alt="Most productive time" />
 </p>
+
+<p align="center">
+  <img width="95%" src="https://raw.githubusercontent.com/Sassech/Sassech/output/snake.svg" alt="Contribution snake" />
+</p>
 <!-- STATS:END -->
 
 ## Let's build something

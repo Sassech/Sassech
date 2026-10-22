@@ -122,4 +122,4 @@ stats:
   utc_offset: -3          # your timezone, used by the productive-hours card
   # Snake animation. Requires .github/workflows/snake.yml to run once first,
   # and only works when this repo is named exactly like your username.
-  snake: false
+  snake: true
