@@ -53,12 +53,12 @@ header:
       color: "181717"
       logo: github
       url: https://github.com/Sassech
-    # Plain-text email attracts scrapers — and this file is public, so the
-    # address would leak even while commented out. Keep a placeholder here.
-    # - label: Email
-    #   color: "EA4335"
-    #   logo: gmail
-    #   url: mailto:you@example.com
+    # The address is visible in this file and in commit metadata, so it carries
+    # no extra exposure; it is shown as a mailto badge for convenience.
+    - label: Email
+      color: "EA4335"
+      logo: gmail
+      url: mailto:nasst451@gmail.com
     # - label: LinkedIn
     #   color: "0A66C2"
     #   logo: linkedin
