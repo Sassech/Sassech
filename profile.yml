@@ -1,0 +1,122 @@
+# ============================================================================
+#  GitHub profile — single source of truth for the generated blocks.
+#
+#  Edit this file, then run:   python3 scripts/build_profile.py
+#  (the GitHub Action runs it automatically when you push this file)
+#
+#  Everything between the <!-- NAME:START --> / <!-- NAME:END --> markers in
+#  README.md is regenerated from here. The rest of README.md is plain Markdown.
+# ============================================================================
+
+username: Sassech
+
+# ----------------------------------------------------------------------------
+# HEADER — typing animation + bio + contact icons
+# ----------------------------------------------------------------------------
+header:
+  typing:
+    font: Inconsolata
+    weight: 500
+    size: 42
+    duration: 4000
+    pause: 300
+    color: "A7A459"
+    width: 1300
+    height: 180
+    # One entry per animated line. Add/remove freely — no URL encoding needed.
+    lines:
+      - "Hello hello"
+      - "I'm Saul — platform & DevOps engineer"
+      - "Self-hosted infra • K3s • Go • Rust"
+
+  # Lines rendered inside the <pre> block under the animation.
+  # Keep the emoji + spacing style, or empty the list to hide the block.
+  bio:
+    - "💼 Platform & DevOps • self-hosted infrastructure"
+    - "💻 Docker • K3s • Traefik • Cloudflare Tunnel"
+    - "🔧 Go • Rust • Python • Java / Spring"
+    - "🏠 Homelab: Mailcow • registry • n8n • SonarQube"
+    - "🎮 Music • Anime • Automation"
+
+  # Decorative GIF under the bio (local file, lives in assets/).
+  gif: "assets/kyubey.gif"
+
+  # Optional image floated to the right of the animation (your own avatar art).
+  # Put your own URL here — do not reuse someone else's artwork.
+  avatar: null
+
+  # Contact icons, in display order. `style` is flat by default (like the
+  # original template); use "for-the-badge" for the bigger square badges.
+  socials:
+    - label: GitHub
+      color: "181717"
+      logo: github
+      url: https://github.com/Sassech
+    # Plain-text email attracts scrapers — and this file is public, so the
+    # address would leak even while commented out. Keep a placeholder here.
+    # - label: Email
+    #   color: "EA4335"
+    #   logo: gmail
+    #   url: mailto:you@example.com
+    # - label: LinkedIn
+    #   color: "0A66C2"
+    #   logo: linkedin
+    #   url: https://www.linkedin.com/in/your-handle
+    # - label: X
+    #   color: "000000"
+    #   logo: x
+    #   url: https://x.com/your-handle
+    # - label: Mastodon
+    #   color: "6364FF"
+    #   logo: mastodon
+    #   url: https://your.instance/@your-handle
+
+# ----------------------------------------------------------------------------
+# STACK — badges grouped by category. `logo` is a simple-icons slug.
+# ----------------------------------------------------------------------------
+stack:
+  languages:
+    - { label: Go, color: "00ADD8", logo: go }
+    - { label: Rust, color: "000000", logo: rust }
+    - { label: Python, color: "3776AB", logo: python }
+    - { label: Java, color: "ED8B00", logo: openjdk }
+    - { label: TypeScript, color: "3178C6", logo: typescript }
+    - { label: C#, color: "512BD4", logo: dotnet }
+    - { label: Bash, color: "4EAA25", logo: gnubash }
+  frameworks:
+    - { label: Spring Boot, color: "6DB33F", logo: springboot }
+    - { label: Fastify, color: "000000", logo: fastify }
+    - { label: Node.js, color: "5FA04E", logo: nodedotjs }
+    - { label: Tauri, color: "24C8D8", logo: tauri }
+    - { label: Unity, color: "000000", logo: unity }
+    - { label: Vite, color: "646CFF", logo: vite }
+  tools:
+    - { label: Docker, color: "2496ED", logo: docker }
+    - { label: K3s, color: "FFC61C", logo: k3s, logo_color: black }
+    - { label: Tailscale, color: "242424", logo: tailscale }
+    - { label: Traefik, color: "24A1C1", logo: traefikproxy }
+    - { label: Cloudflare, color: "F38020", logo: cloudflare }
+    - { label: Ansible, color: "EE0000", logo: ansible }
+    - { label: GitHub Actions, color: "2088FF", logo: githubactions }
+    - { label: PostgreSQL, color: "4169E1", logo: postgresql }
+    - { label: MariaDB, color: "003545", logo: mariadb }
+    - { label: SonarQube, color: "4E9BCD", logo: sonar }
+    - { label: Linux, color: "FCC624", logo: linux, logo_color: black }
+    - { label: Neovim, color: "57A143", logo: neovim }
+
+# ----------------------------------------------------------------------------
+# STATS — every card takes the username and theme from this block.
+# Themes: https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+# ----------------------------------------------------------------------------
+stats:
+  theme: tokyonight
+  stats_card: true        # commits + stars + PRs merged
+  top_languages: true     # language breakdown
+  streak: true            # contribution streak
+  summary_cards: true     # commits / PRs / issues / stars + productive hours
+  utc_offset: -3          # your timezone, used by the productive-hours card
+  activity_graph: true    # 31-day contribution graph
+  trophies: true          # achievement plaques
+  # Snake animation. Requires .github/workflows/snake.yml to run once first,
+  # and only works when this repo is named exactly like your username.
+  snake: false

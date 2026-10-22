@@ -1,0 +1,8 @@
+# Editor / OS noise
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# Local tooling (skill registry cache, agent state)
+.atl/
