@@ -96,17 +96,17 @@ Tailscale, with WireGuard-encrypted pod networking and Ansible for provisioning.
 
 <!-- STATS:START -->
 <p align="center">
-  <img height="180em" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Sassech&theme=tokyonight" alt="Total stars, commits, pull requests and issues" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs?username=Sassech&layout=compact&langs_count=8&hide_border=true&theme=tokyonight" alt="Top languages" />
+  <img height="180em" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Sassech&theme=tokyonight&cb=2" alt="Total stars, commits, pull requests and issues" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs?username=Sassech&layout=compact&langs_count=8&hide_border=true&theme=tokyonight&cb=2" alt="Top languages" />
 </p>
 
 <p align="center">
-  <img width="80%" src="https://streak-stats.demolab.com?user=Sassech&theme=tokyonight&hide_border=true" alt="Contribution streak" />
+  <img width="80%" src="https://streak-stats.demolab.com?user=Sassech&theme=tokyonight&hide_border=true&cb=2" alt="Contribution streak" />
 </p>
 
 <p align="center">
-  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Sassech&theme=tokyonight" alt="Contribution graph" />
-  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Sassech&theme=tokyonight&utcOffset=-3" alt="Most productive time" />
+  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Sassech&theme=tokyonight&cb=2" alt="Contribution graph" />
+  <img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Sassech&theme=tokyonight&utcOffset=-3&cb=2" alt="Most productive time" />
 </p>
 
 <p align="center">

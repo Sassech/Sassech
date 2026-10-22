@@ -123,3 +123,6 @@ stats:
   # Snake animation. Requires .github/workflows/snake.yml to run once first,
   # and only works when this repo is named exactly like your username.
   snake: true
+  # Bump this after the account data changes (a repo goes public, etc.).
+  # GitHub caches card images by URL, so without a bump the old numbers stick.
+  cache_bust: "2"

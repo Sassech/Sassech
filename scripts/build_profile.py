@@ -191,6 +191,9 @@ def render_stats(cfg: dict) -> str:
     user = cfg["username"]
     stats = cfg.get("stats") or {}
     theme = stats.get("theme", "tokyonight")
+    # GitHub caches card images by URL, so bumping this value forces a fresh
+    # fetch after the underlying data changes (e.g. a repo goes public).
+    bust = f'&cb={stats["cache_bust"]}' if stats.get("cache_bust") else ""
     gh = "https://github-readme-stats.vercel.app/api"
     summary = "https://github-profile-summary-cards.vercel.app/api/cards"
 
@@ -204,12 +207,12 @@ def render_stats(cfg: dict) -> str:
     if stats.get("summary_stats", True):
         cards.append(
             f'<img height="180em" src="{summary}/stats?username={user}'
-            f'&theme={theme}" alt="Total stars, commits, pull requests and issues" />'
+            f'&theme={theme}{bust}" alt="Total stars, commits, pull requests and issues" />'
         )
     if stats.get("top_languages", True):
         cards.append(
             f'<img height="180em" src="{gh}/top-langs?username={user}'
-            f'&layout=compact&langs_count=8&hide_border=true&theme={theme}"'
+            f'&layout=compact&langs_count=8&hide_border=true&theme={theme}{bust}"'
             f' alt="Top languages" />'
         )
     if cards:
@@ -220,7 +223,7 @@ def render_stats(cfg: dict) -> str:
             [
                 '<p align="center">',
                 f'  <img width="80%" src="https://streak-stats.demolab.com?user={user}'
-                f'&theme={theme}&hide_border=true" alt="Contribution streak" />',
+                f'&theme={theme}&hide_border=true{bust}" alt="Contribution streak" />',
                 "</p>",
                 "",
             ]
@@ -232,12 +235,12 @@ def render_stats(cfg: dict) -> str:
         if stats.get("details_graph", True):
             pair.append(
                 f'  <img width="49%" src="{summary}/profile-details?username={user}'
-                f'&theme={theme}" alt="Contribution graph" />'
+                f'&theme={theme}{bust}" alt="Contribution graph" />'
             )
         if stats.get("productive_time", True):
             pair.append(
                 f'  <img width="49%" src="{summary}/productive-time?username={user}'
-                f'&theme={theme}&utcOffset={offset}" alt="Most productive time" />'
+                f'&theme={theme}&utcOffset={offset}{bust}" alt="Most productive time" />'
             )
         out.extend(['<p align="center">', "\n".join(pair), "</p>", ""])
 
