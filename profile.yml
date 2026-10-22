@@ -40,6 +40,7 @@ header:
 
   # Decorative GIF under the bio (local file, lives in assets/).
   gif: "assets/kyubey.gif"
+  gif_height: 70
 
   # Optional image floated to the right of the animation (your own avatar art).
   # Put your own URL here — do not reuse someone else's artwork.

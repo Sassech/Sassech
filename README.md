@@ -24,7 +24,7 @@
 
 <div align="center">
 
-<img src="assets/kyubey.gif" height="40" alt="" />
+<img src="assets/kyubey.gif" height="70" alt="" />
 
 <a href="https://github.com/Sassech" title="GitHub"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" /></a>
 

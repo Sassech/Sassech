@@ -156,7 +156,9 @@ def render_header(cfg: dict) -> str:
     out.extend(["", '<div align="center">'])
 
     if gif:
-        out.extend(["", f'<img src="{attr(gif)}" height="40" alt="" />'])
+        out.extend(
+            ["", f'<img src="{attr(gif)}" height="{header.get("gif_height", 40)}" alt="" />']
+        )
 
     icons = render_socials(cfg)
     if icons:
