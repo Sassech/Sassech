@@ -107,16 +107,18 @@ stack:
 # ----------------------------------------------------------------------------
 # STATS — every card takes the username and theme from this block.
 # Themes: https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
+#
+# Note: the public github-readme-activity-graph and github-profile-trophy
+# instances answer HTTP 402 (quota gone), so they are not used here.
 # ----------------------------------------------------------------------------
 stats:
   theme: tokyonight
-  stats_card: true        # commits + stars + PRs merged
+  summary_stats: true     # total stars / commits / PRs / issues
   top_languages: true     # language breakdown
   streak: true            # contribution streak
-  summary_cards: true     # commits / PRs / issues / stars + productive hours
+  details_graph: true     # contributions in the last year
+  productive_time: true   # commits per hour of day
   utc_offset: -3          # your timezone, used by the productive-hours card
-  activity_graph: true    # 31-day contribution graph
-  trophies: true          # achievement plaques
   # Snake animation. Requires .github/workflows/snake.yml to run once first,
   # and only works when this repo is named exactly like your username.
   snake: false

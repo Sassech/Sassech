@@ -50,8 +50,22 @@ def shield(
     style: str = "for-the-badge",
     logo_color: str = "white",
 ) -> str:
-    """Build a shields.io static badge URL."""
-    text = label.replace("-", "--").replace("_", "__").replace(" ", "%20")
+    """Build a shields.io static badge URL.
+
+    `#` must be percent-encoded or it becomes the URL fragment (this is what
+    broke the C# badge). `%` goes first so later replacements are not
+    double-encoded.
+    """
+    text = (
+        label.replace("%", "%25")
+        .replace("/", "%2F")
+        .replace("?", "%3F")
+        .replace("&", "%26")
+        .replace("#", "%23")
+        .replace("-", "--")
+        .replace("_", "__")
+        .replace(" ", "%20")
+    )
     url = f"https://img.shields.io/badge/{text}-{color}?style={style}"
     if logo:
         url += f"&logo={logo}&logoColor={logo_color}"
@@ -129,15 +143,20 @@ def render_header(cfg: dict) -> str:
             f'alt="{attr(lines[0])}" />'
         )
 
-    out.extend(["", "<br><br>"])
+    out.extend(["", "</div>"])
 
+    # The <pre> block must live OUTSIDE the centered div: inherited
+    # text-align: center would center each line individually and the block
+    # would look ragged instead of aligned.
     if bio:
-        out.append("<pre>")
+        out.extend(["", "<pre>"])
         out.extend(f"    {line}" for line in bio)
-        out.extend(["</pre>", "", "<br>"])
+        out.append("</pre>")
+
+    out.extend(["", '<div align="center">'])
 
     if gif:
-        out.extend([f'<img src="{attr(gif)}" height="40" alt="" />', "", "<br>"])
+        out.extend(["", f'<img src="{attr(gif)}" height="40" alt="" />'])
 
     icons = render_socials(cfg)
     if icons:
@@ -154,13 +173,15 @@ def render_stack(cfg: dict) -> str:
         items = stack.get(key) or []
         if not items:
             continue
-        # One badge per source line: same rendered row, readable diff.
+        # GitHub parses each bare <img> line as its own paragraph, which stacks
+        # the badges vertically. Wrapping the group in a single <p> keeps the
+        # one-badge-per-line source AND renders them left to right.
         badges = "\n".join(
             f'<img src="{shield(item["label"], item["color"], item.get("logo"), logo_color=item.get("logo_color", "white"))}" '
             f'alt="{attr(item["label"])}" />'
             for item in items
         )
-        out.extend([f"### {title}", "", badges, ""])
+        out.extend([f"### {title}", "", "<p>", badges, "</p>", ""])
     return "\n".join(out).rstrip()
 
 
@@ -173,21 +194,23 @@ def render_stats(cfg: dict) -> str:
 
     out: list[str] = []
 
-    if stats.get("stats_card", True) or stats.get("top_languages", True):
-        cards = []
-        if stats.get("stats_card", True):
-            cards.append(
-                f'<img height="180em" src="{gh}?username={user}'
-                f"&show_icons=true&include_all_commits=true&count_private=true"
-                f"&show=prs_merged,prs_merged_percentage&hide_border=true&theme={theme}"
-                f'" alt="GitHub stats" />'
-            )
-        if stats.get("top_languages", True):
-            cards.append(
-                f'<img height="180em" src="{gh}/top-langs?username={user}'
-                f"&layout=compact&langs_count=8&hide_border=true&theme={theme}"
-                f'" alt="Top languages" />'
-            )
+    # Top row: totals (stars / commits / PRs / issues) + language split.
+    # The classic github-readme-stats totals card is rate-limited on its public
+    # instance ("Could not fetch total commits"), so the totals come from
+    # github-profile-summary-cards, which stays available.
+    cards = []
+    if stats.get("summary_stats", True):
+        cards.append(
+            f'<img height="180em" src="{summary}/stats?username={user}'
+            f'&theme={theme}" alt="Total stars, commits, pull requests and issues" />'
+        )
+    if stats.get("top_languages", True):
+        cards.append(
+            f'<img height="180em" src="{gh}/top-langs?username={user}'
+            f'&layout=compact&langs_count=8&hide_border=true&theme={theme}"'
+            f' alt="Top languages" />'
+        )
+    if cards:
         out.extend(['<p align="center">', "  " + "\n  ".join(cards), "</p>", ""])
 
     if stats.get("streak", True):
@@ -201,43 +224,20 @@ def render_stats(cfg: dict) -> str:
             ]
         )
 
-    if stats.get("summary_cards", True):
+    if stats.get("details_graph", True) or stats.get("productive_time", True):
         offset = stats.get("utc_offset", 0)
-        out.extend(
-            [
-                '<p align="center">',
+        pair = []
+        if stats.get("details_graph", True):
+            pair.append(
                 f'  <img width="49%" src="{summary}/profile-details?username={user}'
-                f'&theme={theme}" alt="Commits, pull requests, issues and stars" />',
+                f'&theme={theme}" alt="Contribution graph" />'
+            )
+        if stats.get("productive_time", True):
+            pair.append(
                 f'  <img width="49%" src="{summary}/productive-time?username={user}'
-                f'&theme={theme}&utcOffset={offset}" alt="Most productive time" />',
-                "</p>",
-                "",
-            ]
-        )
-
-    if stats.get("activity_graph", True):
-        out.extend(
-            [
-                '<p align="center">',
-                f'  <img width="95%" src="https://github-readme-activity-graph.vercel.app/graph'
-                f'?username={user}&theme=tokyo-night&hide_border=true&area=true"'
-                f' alt="Contribution activity graph" />',
-                "</p>",
-                "",
-            ]
-        )
-
-    if stats.get("trophies", True):
-        out.extend(
-            [
-                '<p align="center">',
-                f'  <img src="https://github-profile-trophy.vercel.app/?username={user}'
-                f'&theme={theme}&no-frame=true&no-bg=true&column=7&margin-w=8"'
-                f' alt="GitHub trophies" />',
-                "</p>",
-                "",
-            ]
-        )
+                f'&theme={theme}&utcOffset={offset}" alt="Most productive time" />'
+            )
+        out.extend(['<p align="center">', "\n".join(pair), "</p>", ""])
 
     if stats.get("snake", False):
         out.extend(
